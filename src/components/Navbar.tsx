@@ -6,6 +6,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isToursOpen, setIsToursOpen] = useState(false);
+  const [isDestinationsOpen, setIsDestinationsOpen] = useState(false);
   const { t } = useTranslation();
   const { language, toggleLanguage } = useLanguage();
 
@@ -111,19 +113,46 @@ export const Navbar = () => {
               <Link to="/" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
                 {t('home')}
               </Link>
-              <Link to="/tours" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
-                {t('tours')}
-              </Link>
-              <Link to="/destinations" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
-                {t('destinations')}
-              </Link>
+
+              {/* Tours Mobile Dropdown */}
+              <div>
+                <button onClick={() => { setIsToursOpen(!isToursOpen); setIsDestinationsOpen(false); }} className="w-full flex justify-between items-center px-3 py-2 text-white hover:text-gray-200">
+                  {t('tours')}
+                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isToursOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isToursOpen && (
+                  <div className="pl-4 border-l-2 border-green-700 ml-3">
+                    <Link to="/tours/safari" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('safariTours')}</Link>
+                    <Link to="/tours/luxury" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('luxurySafaris')}</Link>
+                    <Link to="/tours/budget" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('budgetSafaris')}</Link>
+                    <Link to="/tours/custom" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('customPackages')}</Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Destinations Mobile Dropdown */}
+              <div>
+                <button onClick={() => { setIsDestinationsOpen(!isDestinationsOpen); setIsToursOpen(false); }} className="w-full flex justify-between items-center px-3 py-2 text-white hover:text-gray-200">
+                  {t('destinations')}
+                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isDestinationsOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isDestinationsOpen && (
+                  <div className="pl-4 border-l-2 border-green-700 ml-3">
+                    <Link to="/destinations/maasai-mara" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('maasaiMara')}</Link>
+                    <Link to="/destinations/amboseli" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('amboseli')}</Link>
+                    <Link to="/destinations/tsavo" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('tsavo')}</Link>
+                    <Link to="/destinations/diani-beach" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('dianiBeach')}</Link>
+                  </div>
+                )}
+              </div>
+
               <Link to="/about" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
                 {t('aboutUs')}
               </Link>
               <Link to="/contact" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
                 {t('contact')}
               </Link>
-              <Link to="/request-quote" className="block px-3 py-2 bg-yellow-500 text-white rounded-lg" onClick={() => setIsOpen(false)}>
+              <Link to="/request-quote" className="block px-3 py-2 bg-yellow-500 text-white rounded-lg text-center" onClick={() => setIsOpen(false)}>
                 {t('requestQuote')}
               </Link>
             </div>

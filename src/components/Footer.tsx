@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Apple as WhatsApp } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from '../hooks/useTranslation';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export const Footer = () => {
   const { t } = useTranslation();
