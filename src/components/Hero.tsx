@@ -4,37 +4,14 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 export const Hero = () => {
   const { language } = useLanguage();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    // This ensures the video plays even if the browser blocks autoplay.
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        // Suppress the error when media is removed from document during navigation
-        if (!error.message.includes('interrupted because the media was removed from the document')) {
-          console.error("Video autoplay was prevented:", error);
-        }
-      });
-    }
-  }, []);
 
   return (
     <section className="relative h-screen overflow-hidden">
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/Maasai mara.jpg"
+      <img
+        src="/Cheetah Running Home page. Hero section.jpg"
+        alt="Cheetah running in the African savanna"
         className="absolute z-0 w-full h-full object-cover"
-      >
-        <source
-          src="https://videos.pexels.com/video-files/8063630/8063630-hd_1280_720_25fps.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+      />
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
 
       {/* Hero Content */}
