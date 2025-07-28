@@ -103,7 +103,7 @@ export const MaasaiMara = () => {
         {/* Hero Image */}
         <div className="relative rounded-2xl overflow-hidden mb-20">
           <img
-            src="/Maasai mara (3).jpg"
+            src="/Maasai mara.jpg"
             alt="A lioness in the Maasai Mara"
             className="w-full h-96 object-cover object-center"
           />
@@ -200,7 +200,7 @@ export const MaasaiMara = () => {
               
               <div className="relative">
                 <img
-                  src="https://images.pexels.com/photos/3812944/pexels-photo-3812944.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  src="/Maasai mara (2).jpg"
                   alt="Tourists on a safari in the Maasai Mara"
                   className="rounded-xl shadow-lg w-full h-64 object-cover"
                 />
@@ -252,7 +252,7 @@ export const MaasaiMara = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="relative group">
               <img
-                src="https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src="/Maasai mara (2).jpg"
                 alt="A pride of lions in the Maasai Mara"
                 className="w-full h-48 object-cover rounded-xl"
               />
@@ -263,7 +263,7 @@ export const MaasaiMara = () => {
             
             <div className="relative group">
               <img
-                src="https://images.pexels.com/photos/167684/pexels-photo-167684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src="/Maasai mara (3).jpg"
                 alt="Elephants in the Maasai Mara"
                 className="w-full h-48 object-cover rounded-xl"
               />
@@ -274,7 +274,7 @@ export const MaasaiMara = () => {
             
             <div className="relative group">
               <img
-                src="https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src="/Maasai Mara (4).jpg"
                 alt="A cheetah in the Maasai Mara"
                 className="w-full h-48 object-cover rounded-xl"
               />
@@ -285,7 +285,7 @@ export const MaasaiMara = () => {
             
             <div className="relative group">
               <img
-                src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src="/Maasai mara.jpg"
                 alt="Wildebeest migration in the Maasai Mara"
                 className="w-full h-48 object-cover rounded-xl"
               />
