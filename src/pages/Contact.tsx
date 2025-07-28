@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from 'lucide-react';
-import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const Contact = () => {
-  const { t } = useTranslation();
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,7 +23,7 @@ export const Contact = () => {
     e.preventDefault();
     // Handle form submission here
     console.log('Form submitted:', formData);
-    alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+    alert(language === 'en' ? 'Your message has been sent successfully! We will contact you soon.' : 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
   };
 
   return (
@@ -42,10 +42,12 @@ export const Contact = () => {
         {/* Header */}
         <div className="text-center mb-16 text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            {t('contactUs')}
+            {language === 'en' ? 'Contact Us' : 'اتصل بنا'}
           </h1>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            نحن هنا لمساعدتك في التخطيط لرحلتك المثالية. تواصل معنا اليوم!
+            {language === 'en'
+              ? 'We are here to help you plan your perfect trip. Contact us today!'
+              : 'نحن هنا لمساعدتك في التخطيط لرحلتك المثالية. تواصل معنا اليوم!'}
           </p>
         </div>
 
@@ -53,7 +55,7 @@ export const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-3xl font-bold text-green-800 mb-8">معلومات التواصل</h2>
+              <h2 className="text-3xl font-bold text-green-800 mb-8">{language === 'en' ? 'Contact Information' : 'معلومات التواصل'}</h2>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
@@ -61,9 +63,9 @@ export const Contact = () => {
                     <Phone className="h-6 w-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{t('phone')}</h3>
+                    <h3 className="font-semibold text-gray-900 mb-1">{language === 'en' ? 'Phone' : 'الهاتف'}</h3>
                     <p className="text-gray-600">+254 712 346 678</p>
-                    <p className="text-sm text-gray-500">متاح 24/7</p>
+                    <p className="text-sm text-gray-500">{language === 'en' ? 'Available 24/7' : 'متاح 24/7'}</p>
                   </div>
                 </div>
 
@@ -72,9 +74,9 @@ export const Contact = () => {
                     <Mail className="h-6 w-6 text-yellow-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{t('email')}</h3>
+                    <h3 className="font-semibold text-gray-900 mb-1">{language === 'en' ? 'Email' : 'البريد الإلكتروني'}</h3>
                     <p className="text-gray-600">info@injaazagency.com</p>
-                    <p className="text-sm text-gray-500">رد سريع خلال 24 ساعة</p>
+                    <p className="text-sm text-gray-500">{language === 'en' ? 'Quick response within 24 hours' : 'رد سريع خلال 24 ساعة'}</p>
                   </div>
                 </div>
 
@@ -83,9 +85,9 @@ export const Contact = () => {
                     <MapPin className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{t('address')}</h3>
-                    <p className="text-gray-600">{t('nairobiKenya')}</p>
-                    <p className="text-sm text-gray-500">مكتب في قلب المدينة</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">{language === 'en' ? 'Address' : 'العنوان'}</h3>
+                    <p className="text-gray-600">{language === 'en' ? 'Nairobi, Kenya' : 'نيروبي، كينيا'}</p>
+                    <p className="text-sm text-gray-500">{language === 'en' ? 'Office in the city center' : 'مكتب في قلب المدينة'}</p>
                   </div>
                 </div>
 
@@ -94,9 +96,9 @@ export const Contact = () => {
                     <Clock className="h-6 w-6 text-purple-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">ساعات العمل</h3>
-                    <p className="text-gray-600">الاثنين - الجمعة: 8:00 - 18:00</p>
-                    <p className="text-gray-600">السبت - الأحد: 9:00 - 16:00</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">{language === 'en' ? 'Working Hours' : 'ساعات العمل'}</h3>
+                    <p className="text-gray-600">{language === 'en' ? 'Monday - Friday: 8:00 - 18:00' : 'الاثنين - الجمعة: 8:00 - 18:00'}</p>
+                    <p className="text-gray-600">{language === 'en' ? 'Saturday - Sunday: 9:00 - 16:00' : 'السبت - الأحد: 9:00 - 16:00'}</p>
                   </div>
                 </div>
               </div>
@@ -110,19 +112,19 @@ export const Contact = () => {
                   className="flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-colors"
                 >
                   <MessageSquare className="h-5 w-5 mr-2" />
-                  راسلنا على WhatsApp
+                  {language === 'en' ? 'Message us on WhatsApp' : 'راسلنا على WhatsApp'}
                 </a>
               </div>
             </div>
 
             {/* Google Map Placeholder */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-green-800 mb-4">موقعنا</h3>
+              <h3 className="text-xl font-bold text-green-800 mb-4">{language === 'en' ? 'Our Location' : 'موقعنا'}</h3>
               <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
                 <div className="text-center text-gray-500">
                   <MapPin className="h-12 w-12 mx-auto mb-2" />
-                  <p>خريطة Google - نيروبي، كينيا</p>
-                  <p className="text-sm">(سيتم إضافة الخريطة التفاعلية)</p>
+                  <p>{language === 'en' ? 'Google Map - Nairobi, Kenya' : 'خريطة Google - نيروبي، كينيا'}</p>
+                  <p className="text-sm">{language === 'en' ? '(Interactive map will be added)' : '(سيتم إضافة الخريطة التفاعلية)'}</p>
                 </div>
               </div>
             </div>
@@ -130,13 +132,13 @@ export const Contact = () => {
 
           {/* Contact Form */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h2 className="text-3xl font-bold text-green-800 mb-8">أرسل لنا رسالة</h2>
+            <h2 className="text-3xl font-bold text-green-800 mb-8">{language === 'en' ? 'Send us a Message' : 'أرسل لنا رسالة'}</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('name')} *
+                    {language === 'en' ? 'Name' : 'الاسم'} *
                   </label>
                   <input
                     type="text"
@@ -145,13 +147,13 @@ export const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
-                    placeholder="اسمك الكامل"
+                    placeholder={language === 'en' ? 'Your Full Name' : 'اسمك الكامل'}
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('emailAddress')} *
+                    {language === 'en' ? 'Email Address' : 'البريد الإلكتروني'} *
                   </label>
                   <input
                     type="email"
@@ -168,7 +170,7 @@ export const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    رقم الهاتف
+                    {language === 'en' ? 'Phone Number' : 'رقم الهاتف'}
                   </label>
                   <input
                     type="tel"
@@ -182,7 +184,7 @@ export const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    الموضوع
+                    {language === 'en' ? 'Subject' : 'الموضوع'}
                   </label>
                   <select
                     name="subject"
@@ -190,19 +192,19 @@ export const Contact = () => {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
                   >
-                    <option value="">اختر الموضوع</option>
-                    <option value="safari">جولات السفاري</option>
-                    <option value="luxury">السفاري الفاخرة</option>
-                    <option value="budget">السفاري الاقتصادية</option>
-                    <option value="custom">باقات مخصصة</option>
-                    <option value="general">استفسار عام</option>
+                    <option value="">{language === 'en' ? 'Select Subject' : 'اختر الموضوع'}</option>
+                    <option value="safari">{language === 'en' ? 'Safari Tours' : 'جولات السفاري'}</option>
+                    <option value="luxury">{language === 'en' ? 'Luxury Safaris' : 'السفاري الفاخرة'}</option>
+                    <option value="budget">{language === 'en' ? 'Budget Safaris' : 'السفاري الاقتصادية'}</option>
+                    <option value="custom">{language === 'en' ? 'Custom Packages' : 'باقات مخصصة'}</option>
+                    <option value="general">{language === 'en' ? 'General Inquiry' : 'استفسار عام'}</option>
                   </select>
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('message')} *
+                  {language === 'en' ? 'Message' : 'الرسالة'} *
                 </label>
                 <textarea
                   name="message"
@@ -211,7 +213,7 @@ export const Contact = () => {
                   required
                   rows={6}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-none"
-                  placeholder="اكتب رسالتك هنا..."
+                  placeholder={language === 'en' ? 'Write your message here...' : 'اكتب رسالتك هنا...'}
                 />
               </div>
 
@@ -220,7 +222,7 @@ export const Contact = () => {
                 className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all transform hover:scale-105 flex items-center justify-center"
               >
                 <Send className="h-5 w-5 mr-2" />
-                {t('submit')}
+                {language === 'en' ? 'Submit' : 'إرسال'}
               </button>
             </form>
           </div>
@@ -229,24 +231,25 @@ export const Contact = () => {
         {/* Additional Info */}
         <div className="mt-20 bg-black/20 backdrop-blur-sm rounded-2xl p-12 text-white text-center">
           <h2 className="text-3xl font-bold mb-4">
-            نتطلع للسماع منك!
+            {language === 'en' ? 'We Look Forward to Hearing From You!' : 'نتطلع للسماع منك!'}
           </h2>
           <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-            فريقنا من الخبراء جاهز لمساعدتك في تخطيط رحلة أحلامك إلى كينيا. 
-            تواصل معنا اليوم ودعنا نبدأ في صنع ذكريات لا تُنسى.
+            {language === 'en'
+              ? 'Our team of experts is ready to help you plan your dream trip to Kenya. Contact us today and let\'s start making unforgettable memories.'
+              : 'فريقنا من الخبراء جاهز لمساعدتك في تخطيط رحلة أحلامك إلى كينيا. تواصل معنا اليوم ودعنا نبدأ في صنع ذكريات لا تُنسى.'}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href="tel:+254712346678"
               className="bg-yellow-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-600 transition-colors"
             >
-              اتصل الآن
+              {language === 'en' ? 'Call Now' : 'اتصل الآن'}
             </a>
             <a
               href="mailto:info@injaazagency.com"
               className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-green-700 transition-all"
             >
-              راسلنا بالإيميل
+              {language === 'en' ? 'Email Us' : 'راسلنا بالإيميل'}
             </a>
           </div>
         </div>

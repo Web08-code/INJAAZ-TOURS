@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Send, Users, Calendar, MapPin, Clock } from 'lucide-react';
-import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const RequestQuote = () => {
-  const { t } = useTranslation();
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -47,25 +47,25 @@ export const RequestQuote = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Quote request submitted:', formData);
-    alert('تم إرسال طلب العرض بنجاح! سنتواصل معك خلال 24 ساعة.');
+    alert(language === 'en' ? 'Quote request submitted successfully! We will contact you within 24 hours.' : 'تم إرسال طلب العرض بنجاح! سنتواصل معك خلال 24 ساعة.');
   };
 
   const destinations = [
-    { id: 'maasai-mara', name: 'ماساي مارا' },
-    { id: 'amboseli', name: 'أمبوسيلي' },
-    { id: 'tsavo', name: 'تسافو' },
-    { id: 'diani-beach', name: 'شاطئ ديان' },
-    { id: 'lake-nakuru', name: 'بحيرة ناكورو' },
-    { id: 'mount-kenya', name: 'جبل كينيا' }
+    { id: 'maasai-mara', name: language === 'en' ? 'Maasai Mara' : 'ماساي مارا' },
+    { id: 'amboseli', name: language === 'en' ? 'Amboseli' : 'أمبوسيلي' },
+    { id: 'tsavo', name: language === 'en' ? 'Tsavo' : 'تسافو' },
+    { id: 'diani-beach', name: language === 'en' ? 'Diani Beach' : 'شاطئ ديان' },
+    { id: 'lake-nakuru', name: language === 'en' ? 'Lake Nakuru' : 'بحيرة ناكورو' },
+    { id: 'mount-kenya', name: language === 'en' ? 'Mount Kenya' : 'جبل كينيا' }
   ];
 
   const interests = [
-    { id: 'wildlife', name: 'مشاهدة الحياة البرية' },
-    { id: 'photography', name: 'التصوير الفوتوغرافي' },
-    { id: 'culture', name: 'التراث والثقافة' },
-    { id: 'adventure', name: 'الأنشطة المغامرة' },
-    { id: 'beach', name: 'الشواطئ والاسترخاء' },
-    { id: 'hiking', name: 'المشي والتسلق' }
+    { id: 'wildlife', name: language === 'en' ? 'Wildlife viewing' : 'مشاهدة الحياة البرية' },
+    { id: 'photography', name: language === 'en' ? 'Photography' : 'التصوير الفوتوغرافي' },
+    { id: 'culture', name: language === 'en' ? 'Heritage and Culture' : 'التراث والثقافة' },
+    { id: 'adventure', name: language === 'en' ? 'Adventure activities' : 'الأنشطة المغامرة' },
+    { id: 'beach', name: language === 'en' ? 'Beaches and Relaxation' : 'الشواطئ والاسترخاء' },
+    { id: 'hiking', name: language === 'en' ? 'Hiking and Climbing' : 'المشي والتسلق' }
   ];
 
   return (
@@ -84,10 +84,12 @@ export const RequestQuote = () => {
         {/* Header */}
         <div className="text-center mb-12 text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            {t('requestQuote')}
+            {language === 'en' ? 'Request a Quote' : 'طلب عرض سعر'}
           </h1>
           <p className="text-xl text-gray-200 leading-relaxed">
-            املأ النموذج أدناه وسنقوم بتصميم برنامج سياحي مخصص يناسب احتياجاتك وميزانيتك
+            {language === 'en'
+              ? 'Fill out the form below and we will design a customized tour program that suits your needs and budget'
+              : 'املأ النموذج أدناه وسنقوم بتصميم برنامج سياحي مخصص يناسب احتياجاتك وميزانيتك'}
           </p>
         </div>
 
@@ -97,13 +99,13 @@ export const RequestQuote = () => {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center">
               <Users className="h-6 w-6 ml-3 text-yellow-600" />
-              المعلومات الشخصية
+              {language === 'en' ? 'Personal Information' : 'المعلومات الشخصية'}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('name')} *
+                  {language === 'en' ? 'Name' : 'الاسم'} *
                 </label>
                 <input
                   type="text"
@@ -112,13 +114,13 @@ export const RequestQuote = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
-                  placeholder="اسمك الكامل"
+                  placeholder={language === 'en' ? 'Your Full Name' : 'اسمك الكامل'}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('emailAddress')} *
+                  {language === 'en' ? 'Email Address' : 'البريد الإلكتروني'} *
                 </label>
                 <input
                   type="email"
@@ -133,7 +135,7 @@ export const RequestQuote = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  رقم الهاتف *
+                  {language === 'en' ? 'Phone Number' : 'رقم الهاتف'} *
                 </label>
                 <input
                   type="tel"
@@ -148,7 +150,7 @@ export const RequestQuote = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  الجنسية
+                  {language === 'en' ? 'Nationality' : 'الجنسية'}
                 </label>
                 <input
                   type="text"
@@ -156,7 +158,7 @@ export const RequestQuote = () => {
                   value={formData.nationality}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
-                  placeholder="السعودية، الإمارات، إلخ..."
+                  placeholder={language === 'en' ? 'Saudi Arabia, UAE, etc.' : 'السعودية، الإمارات، إلخ...'}
                 />
               </div>
             </div>
@@ -166,13 +168,13 @@ export const RequestQuote = () => {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center">
               <Calendar className="h-6 w-6 ml-3 text-yellow-600" />
-              تفاصيل الرحلة
+              {language === 'en' ? 'Trip Details' : 'تفاصيل الرحلة'}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('groupSize')} *
+                  {language === 'en' ? 'Group Size' : 'حجم المجموعة'} *
                 </label>
                 <select
                   name="groupSize"
@@ -181,19 +183,19 @@ export const RequestQuote = () => {
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
                 >
-                  <option value="">اختر حجم المجموعة</option>
-                  <option value="1">شخص واحد</option>
-                  <option value="2">شخصان</option>
-                  <option value="3-4">3-4 أشخاص</option>
-                  <option value="5-8">5-8 أشخاص</option>
-                  <option value="9-15">9-15 شخص</option>
-                  <option value="16+">أكثر من 16 شخص</option>
+                  <option value="">{language === 'en' ? 'Select Group Size' : 'اختر حجم المجموعة'}</option>
+                  <option value="1">{language === 'en' ? '1 Person' : 'شخص واحد'}</option>
+                  <option value="2">{language === 'en' ? '2 People' : 'شخصان'}</option>
+                  <option value="3-4">{language === 'en' ? '3-4 People' : '3-4 أشخاص'}</option>
+                  <option value="5-8">{language === 'en' ? '5-8 People' : '5-8 أشخاص'}</option>
+                  <option value="9-15">{language === 'en' ? '9-15 People' : '9-15 شخص'}</option>
+                  <option value="16+">{language === 'en' ? '16+ People' : 'أكثر من 16 شخص'}</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('budget')} (بالدولار الأمريكي)
+                  {language === 'en' ? 'Budget' : 'الميزانية'} (USD)
                 </label>
                 <select
                   name="budget"
@@ -201,18 +203,18 @@ export const RequestQuote = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
                 >
-                  <option value="">اختر نطاق الميزانية</option>
+                  <option value="">{language === 'en' ? 'Select Budget Range' : 'اختر نطاق الميزانية'}</option>
                   <option value="1000-2000">$1,000 - $2,000</option>
                   <option value="2000-5000">$2,000 - $5,000</option>
                   <option value="5000-10000">$5,000 - $10,000</option>
                   <option value="10000-20000">$10,000 - $20,000</option>
-                  <option value="20000+">أكثر من $20,000</option>
+                  <option value="20000+">{language === 'en' ? 'More than $20,000' : 'أكثر من $20,000'}</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  تاريخ البداية *
+                  {language === 'en' ? 'Start Date' : 'تاريخ البداية'} *
                 </label>
                 <input
                   type="date"
@@ -226,7 +228,7 @@ export const RequestQuote = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  تاريخ النهاية *
+                  {language === 'en' ? 'End Date' : 'تاريخ النهاية'} *
                 </label>
                 <input
                   type="date"
@@ -241,7 +243,7 @@ export const RequestQuote = () => {
 
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                نوع الإقامة المفضل
+                {language === 'en' ? 'Preferred Accommodation Type' : 'نوع الإقامة المفضل'}
               </label>
               <select
                 name="accommodation"
@@ -249,18 +251,18 @@ export const RequestQuote = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
               >
-                <option value="">اختر نوع الإقامة</option>
-                <option value="luxury">فنادق ومنتجعات فاخرة (5 نجوم)</option>
-                <option value="mid-range">فنادق متوسطة (3-4 نجوم)</option>
-                <option value="budget">إقامة اقتصادية</option>
-                <option value="camping">التخييم والمغامرة</option>
-                <option value="mixed">مزيج من الخيارات</option>
+                <option value="">{language === 'en' ? 'Select Accommodation Type' : 'اختر نوع الإقامة'}</option>
+                <option value="luxury">{language === 'en' ? 'Luxury Hotels & Resorts (5-star)' : 'فنادق ومنتجعات فاخرة (5 نجوم)'}</option>
+                <option value="mid-range">{language === 'en' ? 'Mid-range Hotels (3-4 star)' : 'فنادق متوسطة (3-4 نجوم)'}</option>
+                <option value="budget">{language === 'en' ? 'Budget Accommodation' : 'إقامة اقتصادية'}</option>
+                <option value="camping">{language === 'en' ? 'Camping & Adventure' : 'التخييم والمغامرة'}</option>
+                <option value="mixed">{language === 'en' ? 'Mixed Options' : 'مزيج من الخيارات'}</option>
               </select>
             </div>
 
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                خبرتك السابقة في السفاري
+                {language === 'en' ? 'Previous Safari Experience' : 'خبرتك السابقة في السفاري'}
               </label>
               <select
                 name="experience"
@@ -268,11 +270,11 @@ export const RequestQuote = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
               >
-                <option value="">اختر مستوى الخبرة</option>
-                <option value="first-time">أول مرة</option>
-                <option value="beginner">مبتدئ (1-2 رحلة)</option>
-                <option value="experienced">خبير (3-5 رحلات)</option>
-                <option value="expert">محترف (أكثر من 5 رحلات)</option>
+                <option value="">{language === 'en' ? 'Select Experience Level' : 'اختر مستوى الخبرة'}</option>
+                <option value="first-time">{language === 'en' ? 'First Time' : 'أول مرة'}</option>
+                <option value="beginner">{language === 'en' ? 'Beginner (1-2 trips)' : 'مبتدئ (1-2 رحلة)'}</option>
+                <option value="experienced">{language === 'en' ? 'Experienced (3-5 trips)' : 'خبير (3-5 رحلات)'}</option>
+                <option value="expert">{language === 'en' ? 'Expert (5+ trips)' : 'محترف (أكثر من 5 رحلات)'}</option>
               </select>
             </div>
           </div>
@@ -281,7 +283,7 @@ export const RequestQuote = () => {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center">
               <MapPin className="h-6 w-6 ml-3 text-yellow-600" />
-              الوجهات المرغوبة
+              {language === 'en' ? 'Desired Destinations' : 'الوجهات المرغوبة'}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -304,7 +306,7 @@ export const RequestQuote = () => {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-green-800 mb-6 flex items-center">
               <Clock className="h-6 w-6 ml-3 text-yellow-600" />
-              {t('interests')}
+              {language === 'en' ? 'Interests' : 'الاهتمامات'}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -325,14 +327,14 @@ export const RequestQuote = () => {
 
           {/* Special Requests */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-green-800 mb-6">طلبات خاصة</h2>
+            <h2 className="text-2xl font-bold text-green-800 mb-6">{language === 'en' ? 'Special Requests' : 'طلبات خاصة'}</h2>
             <textarea
               name="specialRequests"
               value={formData.specialRequests}
               onChange={handleChange}
               rows={5}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-none"
-              placeholder="أخبرنا عن أي طلبات خاصة، قيود غذائية، احتياجات طبية، أو تفضيلات أخرى..."
+              placeholder={language === 'en' ? 'Tell us about any special requests, dietary restrictions, medical needs, or other preferences...' : 'أخبرنا عن أي طلبات خاصة، قيود غذائية، احتياجات طبية، أو تفضيلات أخرى...'}
             />
           </div>
 
@@ -342,21 +344,21 @@ export const RequestQuote = () => {
             className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all transform hover:scale-105 flex items-center justify-center"
           >
             <Send className="h-5 w-5 mr-2" />
-            إرسال طلب العرض
+            {language === 'en' ? 'Submit Quote Request' : 'إرسال طلب العرض'}
           </button>
 
           <p className="text-center text-sm text-gray-500 mt-4">
-            * سنقوم بالرد على طلبك خلال 24 ساعة مع عرض مفصل ومخصص لرحلتك
+            {language === 'en' ? '* We will respond to your request within 24 hours with a detailed and customized itinerary' : '* سنقوم بالرد على طلبك خلال 24 ساعة مع عرض مفصل ومخصص لرحلتك'}
           </p>
         </form>
 
         {/* Additional Info */}
         <div className="mt-12 bg-black/20 backdrop-blur-sm rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">
-            خدمة عملاء متميزة
+            {language === 'en' ? 'Excellent Customer Service' : 'خدمة عملاء متميزة'}
           </h3>
           <p className="text-lg mb-6">
-            فريق خبرائنا جاهز لمساعدتك في كل خطوة من خطوات التخطيط لرحلتك
+            {language === 'en' ? 'Our team of experts is ready to assist you every step of the way in planning your trip' : 'فريق خبرائنا جاهز لمساعدتك في كل خطوة من خطوات التخطيط لرحلتك'}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
@@ -371,7 +373,7 @@ export const RequestQuote = () => {
               href="tel:+254712346678"
               className="bg-green-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-700 transition-colors"
             >
-              اتصل الآن
+              {language === 'en' ? 'Call Now' : 'اتصل الآن'}
             </a>
           </div>
         </div>

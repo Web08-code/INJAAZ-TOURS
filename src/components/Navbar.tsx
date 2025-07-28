@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
-import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isToursOpen, setIsToursOpen] = useState(false);
   const [isDestinationsOpen, setIsDestinationsOpen] = useState(false);
-  const { t } = useTranslation();
   const { language, toggleLanguage } = useLanguage();
 
   return (
@@ -23,26 +21,26 @@ export const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
             <Link to="/" className="text-white hover:text-gray-200 font-medium transition-colors">
-              {t('home')}
+              {language === 'en' ? 'Home' : 'الرئيسية'}
             </Link>
             
             {/* Tours Dropdown */}
             <div className="relative group">
               <button className="flex items-center text-white hover:text-gray-200 font-medium transition-colors">
-                {t('tours')} <ChevronDown className="ml-1 h-4 w-4" />
+                {language === 'en' ? 'Tours' : 'الجولات'} <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               <div className="absolute top-full left-0 w-48 bg-jungle-green rounded-lg shadow-lg py-2 border opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 transform transition-all duration-300 ease-in-out">
                 <Link to="/tours/safari" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('safariTours')}
+                  {language === 'en' ? 'Safari Tours' : 'جولات السفاري'}
                 </Link>
                 <Link to="/tours/luxury" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('luxurySafaris')}
+                  {language === 'en' ? 'Luxury Safaris' : 'السفاري الفاخرة'}
                 </Link>
                 <Link to="/tours/budget" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('budgetSafaris')}
+                  {language === 'en' ? 'Budget Safaris' : 'السفاري الاقتصادية'}
                 </Link>
                 <Link to="/tours/custom" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('customPackages')}
+                  {language === 'en' ? 'Custom Packages' : 'باقات مخصصة'}
                 </Link>
               </div>
             </div>
@@ -50,32 +48,32 @@ export const Navbar = () => {
             {/* Destinations Dropdown */}
             <div className="relative group">
               <button className="flex items-center text-white hover:text-gray-200 font-medium transition-colors">
-                {t('destinations')} <ChevronDown className="ml-1 h-4 w-4" />
+                {language === 'en' ? 'Destinations' : 'الوجهات'} <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               <div className="absolute top-full left-0 w-48 bg-jungle-green rounded-lg shadow-lg py-2 border opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 transform transition-all duration-300 ease-in-out">
                 <Link to="/destinations/maasai-mara" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('maasaiMara')}
+                  {language === 'en' ? 'Maasai Mara' : 'ماساي مارا'}
                 </Link>
                 <Link to="/destinations/amboseli" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('amboseli')}
+                  {language === 'en' ? 'Amboseli' : 'أمبوسيلي'}
                 </Link>
                 <Link to="/destinations/tsavo" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('tsavo')}
+                  {language === 'en' ? 'Tsavo' : 'تسافو'}
                 </Link>
                 <Link to="/destinations/diani-beach" className="block px-4 py-2 text-white hover:bg-green-800">
-                  {t('dianiBeach')}
+                  {language === 'en' ? 'Diani Beach' : 'شاطئ ديان'}
                 </Link>
               </div>
             </div>
 
             <Link to="/about" className="text-white hover:text-gray-200 font-medium transition-colors">
-              {t('aboutUs')}
+              {language === 'en' ? 'About Us' : 'من نحن'}
             </Link>
             <Link to="/contact" className="text-white hover:text-gray-200 font-medium transition-colors">
-              {t('contact')}
+              {language === 'en' ? 'Contact' : 'اتصل بنا'}
             </Link>
             <Link to="/request-quote" className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-6 py-2 rounded-full hover:from-yellow-500 hover:to-yellow-700 transition-all transform hover:scale-105">
-              {t('requestQuote')}
+              {language === 'en' ? 'Request Quote' : 'طلب عرض سعر'}
             </Link>
 
             {/* Language Toggle */}
@@ -111,21 +109,21 @@ export const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-jungle-green border-t">
               <Link to="/" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
-                {t('home')}
+                {language === 'en' ? 'Home' : 'الرئيسية'}
               </Link>
 
               {/* Tours Mobile Dropdown */}
               <div>
                 <button onClick={() => { setIsToursOpen(!isToursOpen); setIsDestinationsOpen(false); }} className="w-full flex justify-between items-center px-3 py-2 text-white hover:text-gray-200">
-                  {t('tours')}
+                  {language === 'en' ? 'Tours' : 'الجولات'}
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isToursOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isToursOpen && (
                   <div className="pl-4 border-l-2 border-green-700 ml-3">
-                    <Link to="/tours/safari" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('safariTours')}</Link>
-                    <Link to="/tours/luxury" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('luxurySafaris')}</Link>
-                    <Link to="/tours/budget" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('budgetSafaris')}</Link>
-                    <Link to="/tours/custom" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('customPackages')}</Link>
+                    <Link to="/tours/safari" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Safari Tours' : 'جولات السفاري'}</Link>
+                    <Link to="/tours/luxury" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Luxury Safaris' : 'السفاري الفاخرة'}</Link>
+                    <Link to="/tours/budget" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Budget Safaris' : 'السفاري الاقتصادية'}</Link>
+                    <Link to="/tours/custom" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Custom Packages' : 'باقات مخصصة'}</Link>
                   </div>
                 )}
               </div>
@@ -133,27 +131,27 @@ export const Navbar = () => {
               {/* Destinations Mobile Dropdown */}
               <div>
                 <button onClick={() => { setIsDestinationsOpen(!isDestinationsOpen); setIsToursOpen(false); }} className="w-full flex justify-between items-center px-3 py-2 text-white hover:text-gray-200">
-                  {t('destinations')}
+                  {language === 'en' ? 'Destinations' : 'الوجهات'}
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isDestinationsOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isDestinationsOpen && (
                   <div className="pl-4 border-l-2 border-green-700 ml-3">
-                    <Link to="/destinations/maasai-mara" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('maasaiMara')}</Link>
-                    <Link to="/destinations/amboseli" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('amboseli')}</Link>
-                    <Link to="/destinations/tsavo" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('tsavo')}</Link>
-                    <Link to="/destinations/diani-beach" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{t('dianiBeach')}</Link>
+                    <Link to="/destinations/maasai-mara" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Maasai Mara' : 'ماساي مارا'}</Link>
+                    <Link to="/destinations/amboseli" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Amboseli' : 'أمبوسيلي'}</Link>
+                    <Link to="/destinations/tsavo" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Tsavo' : 'تسافو'}</Link>
+                    <Link to="/destinations/diani-beach" className="block px-4 py-2 text-white hover:bg-green-800" onClick={() => setIsOpen(false)}>{language === 'en' ? 'Diani Beach' : 'شاطئ ديان'}</Link>
                   </div>
                 )}
               </div>
 
               <Link to="/about" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
-                {t('aboutUs')}
+                {language === 'en' ? 'About Us' : 'من نحن'}
               </Link>
               <Link to="/contact" className="block px-3 py-2 text-white hover:text-gray-200" onClick={() => setIsOpen(false)}>
-                {t('contact')}
+                {language === 'en' ? 'Contact' : 'اتصل بنا'}
               </Link>
               <Link to="/request-quote" className="block px-3 py-2 bg-yellow-500 text-white rounded-lg text-center" onClick={() => setIsOpen(false)}>
-                {t('requestQuote')}
+                {language === 'en' ? 'Request Quote' : 'طلب عرض سعر'}
               </Link>
             </div>
           </div>

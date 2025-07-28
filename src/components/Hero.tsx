@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const Hero = () => {
-  const { t } = useTranslation();
+  const { language } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -42,32 +42,32 @@ export const Hero = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              {t('welcomeToInjaaz')}
+              {language === 'en' ? 'Welcome to Injaaz' : 'مرحباً بكم في إنجاز'}
             </h1>
             <p className="text-xl md:text-2xl text-yellow-300 mb-4 font-medium">
-              {t('premiumToursSubtitle')}
+              {language === 'en' ? 'Premium Tour Agency in Kenya' : 'وكالة الجولات السياحية الفاخرة في كينيا'}
             </p>
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-              {t('heroDescription')}
+              {language === 'en' ? 'Discover the enchanting beauty of Kenya with Injaaz. We offer unforgettable travel experiences that combine luxury with authenticity, from Maasai Mara safaris to the golden beaches of Diani.' : 'اكتشف جمال كينيا الساحر مع إنجاز. نقدم لك تجارب سياحية لا تُنسى تجمع بين الفخامة والأصالة، من سفاري ماساي مارا إلى شواطئ ديان الذهبية.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/tours"
                 className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all transform hover:scale-105 text-center"
               >
-                {t('exploreTours')}
+                {language === 'en' ? 'Explore Tours' : 'استكشف الجولات'}
               </Link>
               <Link
                 to="/request-quote"
                 className="bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-all text-center"
               >
-                {t('getQuote')}
+                {language === 'en' ? 'Get Quote' : 'احصل على عرض سعر'}
               </Link>
               <Link
                 to="/tours/custom"
                 className="border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-400 hover:text-white transition-all text-center"
               >
-                {t('customPackage')}
+                {language === 'en' ? 'Custom Package' : 'باقة مخصصة'}
               </Link>
             </div>
           </div>

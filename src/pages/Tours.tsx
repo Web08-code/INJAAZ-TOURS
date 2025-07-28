@@ -1,42 +1,58 @@
 import { Link } from 'react-router-dom';
 import { Camera, Star, Users, Clock } from 'lucide-react';
-import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const Tours = () => {
-  const { t } = useTranslation();
+  const { language } = useLanguage();
 
   const tourCategories = [
     {
-      title: t('safariTours'),
-      description: 'استكشف البرية الأفريقية مع جولات السفاري التقليدية',
+      title: language === 'en' ? 'Safari Tours' : 'جولات السفاري',
+      description: language === 'en' ? 'Explore the African wilderness with traditional safari tours' : 'استكشف البرية الأفريقية مع جولات السفاري التقليدية',
       image: 'https://images.pexels.com/photos/3812944/pexels-photo-3812944.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       link: '/tours/safari',
       icon: Camera,
-      features: ['مشاهدة الحيوانات البرية', 'مرشدون محليون خبراء', 'وجبات تقليدية']
+      features: [
+        language === 'en' ? 'Wildlife viewing' : 'مشاهدة الحيوانات البرية',
+        language === 'en' ? 'Expert local guides' : 'مرشدون محليون خبراء',
+        language === 'en' ? 'Traditional meals' : 'وجبات تقليدية'
+      ]
     },
     {
-      title: t('luxurySafaris'),
-      description: 'تجربة فاخرة لا تُنسى مع أفضل الخدمات',
+      title: language === 'en' ? 'Luxury Safaris' : 'السفاري الفاخرة',
+      description: language === 'en' ? 'An unforgettable luxury experience with the best services' : 'تجربة فاخرة لا تُنسى مع أفضل الخدمات',
       image: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       link: '/tours/luxury',
       icon: Star,
-      features: ['إقامة 5 نجوم', 'رحلات طيران خاصة', 'خدمة شخصية']
+      features: [
+        language === 'en' ? '5-star accommodation' : 'إقامة 5 نجوم',
+        language === 'en' ? 'Private flights' : 'رحلات طيران خاصة',
+        language === 'en' ? 'Personalized service' : 'خدمة شخصية'
+      ]
     },
     {
-      title: t('budgetSafaris'),
-      description: 'مغامرات رائعة بأسعار مناسبة للجميع',
+      title: language === 'en' ? 'Budget Safaris' : 'السفاري الاقتصادية',
+      description: language === 'en' ? 'Great adventures at affordable prices for everyone' : 'مغامرات رائعة بأسعار مناسبة للجميع',
       image: 'https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       link: '/tours/budget',
       icon: Users,
-      features: ['أسعار تنافسية', 'مجموعات صغيرة', 'برامج مرنة']
+      features: [
+        language === 'en' ? 'Competitive prices' : 'أسعار تنافسية',
+        language === 'en' ? 'Small groups' : 'مجموعات صغيرة',
+        language === 'en' ? 'Flexible programs' : 'برامج مرنة'
+      ]
     },
     {
-      title: t('customPackages'),
-      description: 'برامج مصممة خصيصاً حسب احتياجاتك',
+      title: language === 'en' ? 'Custom Packages' : 'باقات مخصصة',
+      description: language === 'en' ? 'Programs tailored to your needs' : 'برامج مصممة خصيصاً حسب احتياجاتك',
       image: 'https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       link: '/tours/custom',
       icon: Clock,
-      features: ['تخطيط مخصص', 'مرونة في المواعيد', 'خيارات متنوعة']
+      features: [
+        language === 'en' ? 'Custom planning' : 'تخطيط مخصص',
+        language === 'en' ? 'Flexible dates' : 'مرونة في المواعيد',
+        language === 'en' ? 'Various options' : 'خيارات متنوعة'
+      ]
     }
   ];
 
@@ -45,10 +61,12 @@ export const Tours = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold text-green-800 mb-6">
-            {t('tours')}
+            {language === 'en' ? 'Tours' : 'الجولات'}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            اكتشف تشكيلة واسعة من الجولات السياحية المصممة لتناسب جميع الأذواق والميزانيات
+            {language === 'en'
+              ? 'Discover a wide range of tours designed to suit all tastes and budgets'
+              : 'اكتشف تشكيلة واسعة من الجولات السياحية المصممة لتناسب جميع الأذواق والميزانيات'}
           </p>
         </div>
 
@@ -92,7 +110,7 @@ export const Tours = () => {
                 
                 <div className="mt-6 pt-4 border-t border-gray-200">
                   <span className="text-yellow-600 font-semibold group-hover:text-green-600 transition-colors">
-                    استكشف المزيد ←
+                    {language === 'en' ? 'Explore More →' : 'استكشف المزيد ←'}
                   </span>
                 </div>
               </div>
@@ -103,23 +121,25 @@ export const Tours = () => {
         {/* Call to Action */}
         <div className="mt-20 text-center bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-12 text-white">
           <h2 className="text-3xl font-bold mb-4">
-            لا تجد ما تبحث عنه؟
+            {language === 'en' ? 'Can\'t find what you\'re looking for?' : 'لا تجد ما تبحث عنه؟'}
           </h2>
           <p className="text-xl mb-8 text-green-100">
-            دعنا نساعدك في تصميم الرحلة المثالية حسب احتياجاتك
+            {language === 'en'
+              ? 'Let us help you design the perfect trip for your needs'
+              : 'دعنا نساعدك في تصميم الرحلة المثالية حسب احتياجاتك'}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               to="/request-quote"
               className="bg-yellow-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-600 transition-colors"
             >
-              {t('requestQuote')}
+              {language === 'en' ? 'Request a Quote' : 'طلب عرض سعر'}
             </Link>
             <Link
               to="/contact"
               className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-green-700 transition-all"
             >
-              {t('contact')}
+              {language === 'en' ? 'Contact Us' : 'اتصل بنا'}
             </Link>
           </div>
         </div>
